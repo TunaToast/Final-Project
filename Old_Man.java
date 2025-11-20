@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Old_Man {
 
     private String name;
-    private HashMap<String, String> dialogueOptions = new java.util.HashMap<>();
+    private java.util.HashMap<String, String> dialogueOptions = new java.util.HashMap<>();
 
     public Old_Man(String name) {
         this.name = name;
@@ -55,8 +55,8 @@ public class Old_Man {
         System.out.println(name + ": Greetings, lost one.  Why has The Builder brought you to me?");
 
         while (talking) {
-            System.out.println("Enter a topic (or 'bye' to end converstation): ");
-            String input = scanner.nextLine()trim().toLowerCase();
+            System.out.println("Enter a topic of conversation the old man may know about, or 'bye' to end the conversation: ");
+            String input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("bye")) {
                 System.out.println(name + ": Do not stray stray too deep, lost one.  There are things... *the old man shudders and his focus becomes pained and distant* ...things older than even The Builder Himself in these caverns.");
@@ -66,6 +66,6 @@ public class Old_Man {
             }else {
                 System.out.println(name + " narrows his eyes and cocks his head in confusion. 'I do not understand what you mean by '" + input + "'.");
             }
-        }
-    }
+        } scanner.close();
+    } 
 }
