@@ -42,19 +42,36 @@ public class Game {
     }
 
     private void createRooms() {
-        //TODO: Implement room creation logic
+        //TODO: Create room objects here
+        // Example:
+        // rooms.put("Damp Cave", new Room("Damp Cave", "A dark, damp cave with dripping water."));
     }
 
     private void createItems() {
-        //TODO: Implement item creation logic
+        //TODO: Implement items here
+        // Example:
+        // items.put("Rope", new Item("Rope", "A sturdy rope, useful for climbing."));
     }
 
     private void placeItems() {
         //TODO: Implement item placement logic
+        // Place items in rooms as needed
+        // Example:
+        //  reference a room from the rooms HashMap
+        //  Room DampCave = rooms.get("Damp Cave");
+        //
+        //  reference an item from the items HashMap
+        // Item torch = new Item("Torch", "A wooden torch to light your way.");
+        //
+        // Place the item in the room
+        //startingCave.addItem(torch);
     }
 
     private void createWorldMap() {
         //TODO: Implement world map creation logic
+        //Define room connections here
+        //Example:
+        // rooms.get("Damp Cave").setExit("north", rooms.get("Dark Tunnel"));
     }
 
     private void gameLoop() {
