@@ -2,7 +2,7 @@
 
 /*
  * Boilerplate structure generated with assistance from ChatGPT (OpenAI).
- * Adapted and completed by <Your Name>.
+ * Adapted and completed by James McKean.
  * All conversation content, hints, dialogue, and logic were created by me.
  */
 
