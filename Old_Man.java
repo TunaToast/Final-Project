@@ -52,19 +52,19 @@ public class Old_Man {
         Scanner scanner = new Scanner(System.in);
         boolean talking = true;
 
-        System.out.println(name + ": Greetings, lost one.  Why has The Builder brought you to me?");
+        System.out.println(name + ": Greetings, lost one.  Why has The Builder brought you to me?");  //me
 
         while (talking) {
             System.out.println("Enter a topic of conversation the old man may know about, or 'bye' to end the conversation: ");
             String input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("bye")) {
-                System.out.println(name + ": Do not stray stray too deep, lost one.  There are things... *the old man shudders and his focus becomes pained and distant* ...things older than even The Builder Himself in these caverns.");
+                System.out.println(name + ": Do not stray stray too deep, lost one.  There are things... *the old man shudders and his focus becomes pained and distant* ...things older than even The Builder Himself in these caverns.");  //me
                 talking = false;
             } else if (dialogueOptions.containsKey(input)) {
                 System.out.println(name + " says: " + dialogueOptions.get(input));
             }else {
-                System.out.println(name + " narrows his eyes and cocks his head in confusion. 'I do not understand what you mean by '" + input + "'.");
+                System.out.println(name + " narrows his eyes and cocks his head in confusion. 'I do not understand what you mean by '" + input + "'.");  //me
             }
         } scanner.close();
     } 
