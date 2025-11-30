@@ -16,7 +16,10 @@ public class Item {
     private String name;
     private String description;
 
+    //Create a constructor for the Item class
     public Item(String name, String description) {
+        //delineate the name and description variable from the constructor field parameters
+        //use "this." to refer to the class variables vs the constructor parameters
         this.name = name;
         this.description = description;
     }
