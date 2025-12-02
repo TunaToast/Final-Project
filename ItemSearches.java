@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ItemSearches {
    
   //Create a boolean check to see if the player has the carved stone in their inventory
-  public static boolean haveCarvedStone (ArrayList<Item> inventory, String itemName) {
+  public static boolean haveStoneCarving (ArrayList<Item> inventory, String itemName) {
     // Loop through the inventory to check for the item, ArrayLists use .size() instead of .length
     for (int i = 0; i < inventory.size(); i++) {
         //To fetch a specific item from ArrayList inventory, use .get(index)
@@ -18,7 +18,8 @@ public class ItemSearches {
     }
     //if not found, return the boolean false
     return false;
-  }
+
+  }  //End of haveStoneCarving method
 
   //Create a two part method to first sort, then binary search the inventory for the key
   public static boolean haveKey (ArrayList<Item> inventory, String itemName) {
@@ -38,9 +39,11 @@ public class ItemSearches {
                 inventory.set(j, inventory.get(j + 1));
                 //Set the item at index j + 1 to the temp variable
                 inventory.set(j + 1, temp);
-            }
-        }
-    }
+            }  //End of if statement
+        
+        } // End of inner loop
+    
+    } //End of bubble sort
 
     //Next, perform binary search on the sorted inventory
         //create left and right starting indexes
@@ -67,7 +70,8 @@ public class ItemSearches {
         }
         //False is returned if the item is not found
         return false;
-    }
+    
+    }  //End of haveKey method
     
 
 }

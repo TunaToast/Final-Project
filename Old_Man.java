@@ -17,7 +17,7 @@ public class Old_Man {
 
     public Old_Man(String name) {
         this.name = name;
-        //TODO: Add dialogue options
+        
         // Example: dialogueOptions.put("greet", "Hello there, traveler!");
     }
 
