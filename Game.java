@@ -40,8 +40,8 @@ public class Game {
         player = new Player(rooms.get("Start"));  // Starting room
 
         //Starting message
-        System.out.println("Welcome to Into The Deep!");  //me
-        System.out.println("You wake to find yourself at the bottom of a deep hole, your rope having snapped in your attempt at a gentle descent.");  //me
+        System.out.println("\nWelcome to Into The Deep!");  //me
+        System.out.println("\nYou wake to find yourself at the bottom of a deep hole, your rope having snapped in your attempt at a gentle descent.");  //me
         System.out.println("Tracking your sister's captors has lead you to this cave system beneath a remote seaside village.");  //me
         System.out.println("Taking a moment to get your bearings, you find yourself before the mouth of a dark system of caverns.");  //me
         System.out.println("Gazing one final time up into the darkness above, the sheer rock walls deny any hope of going anywhere but forward.");  //me
@@ -193,7 +193,7 @@ public class Game {
 
             case "go":
                 if (parts.length < 2) {
-                    System.out.println("Go where?");
+                    System.out.println("\nGo where?");
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
@@ -215,7 +215,7 @@ public class Game {
                 //Checks that the player has provided an item name target with the take command
                 //If not, prompts with a question to remind user of syntax
                 if (parts.length < 2) {
-                    System.out.println("Take what?");
+                    System.out.println("\nTake what?");
 
                     //Pause for 
                     //player to read message
@@ -249,7 +249,7 @@ public class Game {
                         currentRoom.getItems().remove(i);
                         
                         //Message to provide feedback for action
-                        System.out.println("You put the " + item.getName() + " in your satchel.");
+                        System.out.println("\nYou put the " + item.getName() + " in your satchel.");
                         
                         //Pause for player to read message
                         System.out.println("\n[Press Enter to Continue]");
@@ -264,7 +264,7 @@ public class Game {
                 //if the array list is iterated through completely without itemToTake being assigned other than null
                 if(itemToTake == null) {
                     //feedback to indicate item is not available to take
-                    System.out.println("The item [" + itemName + "] is not here");
+                    System.out.println("\nThe item [" + itemName + "] is not here");
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
@@ -292,7 +292,7 @@ public class Game {
                 return true;
 
             case "quit":
-                System.out.println("You abandon your pursuit and allow desperation to overtake you.\nDeep withinthe labyrinthine caves there is no hope of escape.\nAs your mind unravels, the darkness consumes you.\nYour sister is never found.\nGame over.");  //me
+                System.out.println("\nYou abandon your pursuit and allow desperation to overtake you.\nDeep withinthe labyrinthine caves there is no hope of escape.\nAs your mind unravels, the darkness consumes you.\nYour sister is never found.\nGame over.");  //me
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -301,7 +301,7 @@ public class Game {
                 return false;
             
             default:
-                System.out.println("I am unable to decipher what you mean.");
+                System.out.println("\nI am unable to decipher what you mean.");
                 return true;
         }
     }
@@ -317,7 +317,7 @@ public class Game {
             boolean hasCarving = ItemSearches.haveStoneCarving(player.getInventory(), "Stone Carving");
             //Checking the negative case first, if the boolean returns false print a message and stop movement with the "return" command
             if (!hasCarving) {
-                System.out.println("You push against the rough stone comprising the wall unable to find any seams.\nYou notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\nWithout anything to place there, the wall blocks your way."); //me
+                System.out.println("\nYou push against the rough stone comprising the wall unable to find any seams.\nYou notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\nWithout anything to place there, the wall blocks your way."); //me
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -329,7 +329,7 @@ public class Game {
                 //Anything else is the positive case, and if barrenDoorOpen is not true it prints a message for the door opening and then sets the door's open boolean to true
             } else {
                 if (!barrenDoorOpen) {
-                    System.out.println("A feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\nAs you complete the placement of the carving, you hear a click from some hidden mechanism and the wall swings open.\nEthereal light fills the entryway from deeper within this hidden chamber.\nThe dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold."); //me
+                    System.out.println("\nA feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\nAs you complete the placement of the carving, you hear a click from some hidden mechanism and the wall swings open.\nEthereal light fills the entryway from deeper within this hidden chamber.\nThe dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold."); //me
                     
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
@@ -346,7 +346,7 @@ public class Game {
 
             boolean hasKey = ItemSearches.haveKey(player.getInventory(), "Key");
             if (!hasKey) {
-                System.out.println("You approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\nUnable to react in time, as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\nWithout the proper key, there is no way through this door."); //me
+                System.out.println("\nYou approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\nUnable to react in time as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\nWithout the proper key, there is no way through this door."); //me
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -355,7 +355,7 @@ public class Game {
                 return;  //stops movement
             } else {
                 if (!finalDoorOpen) {
-                    System.out.println("With no small amount of effort, you push the key through the surrounding barrier and into the lock.\nAs the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\nThe barrier sputters and fades away as the latch emits a satisfying click.\nYou push the door open, the darkness of the next chamber seeming to swallow all light around it."); //me
+                    System.out.println("\nWith no small amount of effort, you push the key through the surrounding barrier and into the lock.\nAs the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\nThe barrier sputters and fades away as the latch emits a satisfying click.\nYou push the door open, the darkness of the next chamber seeming to swallow all light around it."); //me
                     finalDoorOpen = true;
 
                     //Pause for player to read message
@@ -369,7 +369,7 @@ public class Game {
         Room next = current.getExit(direction);
         
         if (next == null) {
-            System.out.println("There is no exit in that direction.");
+            System.out.println("\nThere is no exit in that direction.");
 
             //Pause for player to read message
             System.out.println("\n[Press Enter to Continue]");
@@ -382,7 +382,7 @@ public class Game {
     }
 
     private void showExits(Room room) {
-        System.out.print("Exits: ");
+        System.out.print("\nExits: ");
         for (String dir : room.getExitDirections()) {
             String cap = dir.substring(0,1).toUpperCase() + dir.substring(1).toLowerCase();
             System.out.print(cap + " ");
@@ -395,7 +395,7 @@ public class Game {
             return;
         }
 
-        System.out.print("You see: ");
+        System.out.print("\nYou see: ");
         for (Item i : room.getItems()) {
             System.out.print(i.getName() + " ");
         }
@@ -403,7 +403,7 @@ public class Game {
     }
 
     private void showInventory() {
-        System.out.print("Your backpack contains: ");
+        System.out.print("\nYour backpack contains: ");
         for (Item i : player.getInventory()) {
             System.out.print(i.getName() + " ");
         }
