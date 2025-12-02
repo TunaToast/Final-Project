@@ -6,6 +6,7 @@
 * All game content, algorithms, map layout, descriptions, and logic 
 * were created by me. */
 
+//TODO: Hyphenate all uses of Stone Carving
 
 import java.util.Scanner;
 
