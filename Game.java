@@ -2,11 +2,11 @@
 
 
 /* * Boilerplate structure generated with assistance from ChatGPT (OpenAI). 
-* Adapted and completed by James McKean. 
+* Adapted and completed by . 
 * All game content, algorithms, map layout, descriptions, and logic 
 * were created by me. */
 
-//TODO: Hyphenate all uses of Stone Carving
+
 
 import java.util.Scanner;
 
@@ -14,8 +14,10 @@ import java.util.Scanner;
 //TODO: Use comments to clearly denotate what sections of code do what.
 public class Game {
 
+    //these two values used to check whether doors have been opened later on
     private boolean finalDoorOpen = false;
     private boolean barrenDoorOpen = false;
+    
     private Player player;
     private CommandParser parser = new CommandParser();
 
@@ -60,18 +62,71 @@ public class Game {
         //TODO: Create room objects here
         // Example:
         // rooms.put("Damp Cave", new Room("Damp Cave", "A dark, damp cave with dripping water."));
+        // " + " operator concatenates the strings, joining one after the other until the final statement with the semicolon ends the block
 
-        rooms.put("Start", new Room("Hole Bottom", "You are at the bottom of a deep hole.\nThe walls are steep and smooth, and you find yourself unable to find enough purchase to attempt climbing.\nThough, with the entrance of the hole out of sight, that would probably be a very dangerous idea.\nThe only way to go is forward, suspiciously lit by a single torch.\nThere are exits to the east and west."));  //me
-        rooms.put("East of Start", new Room("East tunnel", "You are in a narrow tunnel that leads to a passage to the North, the walls surprisingly smooth.\nThere are exits to the west and north."));  //me
-        rooms.put("West of Start", new Room("West tunnel", "You are in a narrow tunnel that leads to a passage to the North, the walls surprisingly smooth.\nThere is a decayed skeleton clutching an item laying with its back to the left wall and a gentle light emanates from the northern exit.\nThere are exits to the east and north."));  //me
-        rooms.put("Center West Room", new Room("Old Man's Room", "You find yourself in a small chamber, with a dim lantern just barely illuminating a bedroll against the east wall as well as the room itself.\nYou can just make out the nearly skeletal form of an old man huddled in prayer before a crude statue, time having long worn away its features.\nThere are exits to the north, east, and south."));  //me
-        rooms.put("Central Room", new Room("Collapsed Chamber", "You are in what was once a large chamber, now partially collapsed.\nRubble cuts off a substantial portion of the room, but there is still enough room allow passing through.  In the middle of what is accessible, there is a dais with strange runes carved into its surface.\nA flat stone carving of something you can't quite make out is sitting on its pedestal, its silhouette strange and unfamiliar.\nThere are exits to the east and west."));  //me
-        rooms.put("Center East Room", new Room("Barren Room", "You find yourself in a small, barren cavern.\nRough rock walls surround you, with little of interest to be found in the room.\nAs you look closer at the walls, there is a single cutout of some strange silhouette etched into the north wall.\nThere are exits to the east, west, and south.\nA faint draft emanates from the north wall."));  //me
-        rooms.put("Central Far East Room", new Room("Abandoned Expansion",  "You find yourself in a small, abandoned expansion of the cave system.\nPickaxe marks scar the walls, rubble piles dot areas against the far wall, and two chairs and a barrel with a lantern long gone out sit against the wall just inside the entrance.\nLooking closer, a rusty pickaxe is leaned up against one of the chairs.\nThere is an exit to the west."));  //me
-        rooms.put("North of Old Man's Room", new Room("Collapsed Sleeping Chamber", "You find yourself in a small chamber seemingly used for sleeping in a time long past.\nBunks line each visible wall, both in various states of ruin.\nRubble cuts off access from the far wall.\nOn closer inspection, a long loop of rope is wound upon a hook near the entryway that may come in handy.\nThere is an exit to the south."));  //me
-        rooms.put("North of Barren Room", new Room("Ritual Chamber", "You find yourself in a large chamber, the walls covered in strange runes, symbols, and apparent figures of worship.\nAs you attempt to examine them, a sharp pain starts to form deep in your skull.\nYou are unable to focus on any of the figures, and many of the runes, as your eyes seem to pull your vision away of their own accord.\nIt is almost as if your brain is trying to save you from something horrible were you to fully comprehend their form or meaning.\nA locked door is set into the western wall, with an exit to the south."));  //me
-        rooms.put("Final Room", new Room("Room with a Pit", "You find yourself in a small chamber with the mouth of a seemingly bottomless pit in the center.\nThe only exit is through the door you entered through.\nYou listen carefully and swear you can hear the sound of labored breathing and the faint sound of crashing waves coming from the depths of the pit.\nUnfortunately, there is no other way forward other than to brave the pit.\nThere is an exit to the east."));  //me
-        rooms.put("The End", new Room("Final Cutscene", "You secure the rope and slide down into the suffocating darkness.\nAs you descend, you notice countless yellow eyes reflecting what little light filters through the pit opening.\nThe air smells of the sea and some acrid odor you can't place, but which burns your eyes and runs your nose as your lungs fight for breath.\nOverwhelmed, you double over gagging and fighting for every gasp.\nAs your vision starts to swim, you can just make out thick black tendrils worming their way towards you.\nRiddled with numerous eyes, one particularly thick tentacle reaches near to your leg and seems to size you up.\nIn an instant, the tentacle splits apart down its length with a sickly smack.\nInnumerable needle like teeth shimmer in the dim light as it rears back.\nJust before unconsciousness takes you, the tentacle engulfs your legs, latching on and dragging your helpless form into the darkness.\nAn unearthly, unnaturally deep shriek echoes through the chamber as your vision goes dark"));
+        rooms.put("Start", new Room("Hole Bottom", "You are at the bottom of a deep hole.\n" +
+                                                    "The walls are steep and smooth, and you find yourself unable to find enough purchase to attempt climbing.\n" +
+                                                    "Though, with the entrance of the hole out of sight, that would probably be a very dangerous idea.\n" +
+                                                    "The only way to go is forward, suspiciously lit by a single torch.\n" +
+                                                    "There are exits to the east and west."));  //me
+
+        rooms.put("East of Start", new Room("East tunnel", "You are in a narrow tunnel that leads to a passage to the North, the walls surprisingly smooth.\n" +
+                                                            "There are exits to the west and north."));  //me
+                                            
+        rooms.put("West of Start", new Room("West tunnel", "You are in a narrow tunnel that leads to a passage to the North, the walls surprisingly smooth.\n" +
+                                                            "There is a decayed skeleton clutching an item laying with its back to the left wall and a gentle light emanates from the northern exit.\n" +
+                                                            "There are exits to the east and north."));  //me
+
+        rooms.put("Center West Room", new Room("Old Man's Room", "You find yourself in a small chamber, with a dim lantern just barely illuminating a bedroll against the east wall as well as the room itself.\n" +
+                                                                    "You can just make out the nearly skeletal form of an old man huddled in prayer before a crude statue, time having long worn away its features.\n" +
+                                                                    "There are exits to the north, east, and south."));  //me
+
+        rooms.put("Central Room", new Room("Collapsed Chamber", "You are in what was once a large chamber, now partially collapsed.\n" +
+                                                                    "Rubble cuts off a substantial portion of the room, but there is still enough space to allow passage through.\n" +
+                                                                    "In the middle of what is accessible, there is a dais with strange runes carved into its surface.\n" +
+                                                                    //"A flat stone carving of something you can't quite make out is sitting on its pedestal, its silhouette strange and unfamiliar.\n" +
+                                                                    "There are exits to the east and west."));  //me
+
+        rooms.put("Center East Room", new Room("Barren Room", "You find yourself in a small, barren cavern.\n" +
+                                                                "Rough rock walls surround you, with little of interest to be found in the room.\n" +
+                                                                "As you look closer at the walls, there is a single cutout of some strange silhouette etched into the north wall.\n" +
+                                                                "There are exits to the east, west, and south.\n" +
+                                                                "A faint draft emanates from the north wall."));  //me
+
+        rooms.put("Central Far East Room", new Room("Abandoned Expansion",  "You find yourself in a small, abandoned expansion of the cave system.\n" +
+                                                                                "Pickaxe marks scar the walls, rubble piles dot areas against the far wall, and two chairs and a barrel with a lantern long gone out sit against the wall just inside the entrance.\n" +
+                                                                                "Looking closer, a rusty pickaxe is leaned up against one of the chairs.\n" +
+                                                                                "There is an exit to the west."));  //me
+
+        rooms.put("North of Old Man's Room", new Room("Collapsed Sleeping Chamber", "You find yourself in a small chamber seemingly used for sleeping in a time long past.\n" +
+                                                                                        "Bunks line each visible wall, both in various states of ruin.\n" +
+                                                                                        "Rubble cuts off access from the far wall.\n" +
+                                                                                        "On closer inspection, a long loop of rope is wound upon a hook near the entryway that may come in handy.\n" +
+                                                                                        "There is an exit to the south."));  //me
+                                                                                        
+        rooms.put("North of Barren Room", new Room("Ritual Chamber", "You find yourself in a large chamber, the walls covered in strange runes, symbols, and apparent figures of worship.\n" +
+                                                                                "As you attempt to examine them, a sharp pain starts to form deep in your skull.\n" +
+                                                                                "You are unable to focus on any of the figures, and many of the runes, as your eyes seem to pull your vision away of their own accord.\n" +
+                                                                                "It is almost as if your brain is trying to save you from something horrible were you to fully comprehend their form or meaning.\n" +
+                                                                                "A door is set into the western wall, with an exit to the south."));  //me
+
+        rooms.put("Final Room", new Room("Room with a Pit", "You find yourself in a small chamber with the mouth of a seemingly bottomless pit in the center.\n" +
+                                                                    "The only exit is through the door you entered through.\n" +
+                                                                    "You listen carefully and swear you can hear the sound of labored breathing and the faint sound of crashing waves coming from the depths of the pit.\n" +
+                                                                    "Unfortunately, there is no other way forward other than to brave the pit.\n" +
+                                                                    "There is an exit to the east."));  //me
+
+        rooms.put("The End", new Room("Final Cutscene", "You secure the rope and slide down into the suffocating darkness.\n" +
+                                                                    "As you descend, you notice countless yellow eyes reflecting what little light filters through the pit opening.\n" +
+                                                                    "The air smells of the sea and some acrid odor you can't place, but which burns your eyes and runs your nose as your lungs fight for breath.\n" +
+                                                                    "Landing rather hard, you are overcome by the assault on your senses and fall to your hands and knees.\n" +
+                                                                    "Overwhelmed, you double over gagging and fighting for every gasp.\n" +
+                                                                    "As your vision starts to swim, you can just make out thick black tendrils worming their way towards you.\n" +
+                                                                    "Riddled with numerous eyes, one particularly thick tentacle reaches near to your leg and seems to size you up.\n" +
+                                                                    "In an instant, the tentacle splits apart down its length with a sickly smack.\n" +
+                                                                    "Innumerable needle like teeth shimmer in the dim light as it rears back.\n" +
+                                                                    "Just before unconsciousness takes you, the tentacle engulfs your legs, latching on and dragging your helpless form into the darkness.\n" +
+                                                                    "An unearthly, unnaturally deep shriek echoes through the chamber as your vision goes dark."));
         
     }
 
@@ -217,8 +272,7 @@ public class Game {
                 if (parts.length < 2) {
                     System.out.println("\nTake what?");
 
-                    //Pause for 
-                    //player to read message
+                    //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
                     new Scanner(System.in).nextLine();
 
@@ -279,7 +333,12 @@ public class Game {
                 //return true;
 
             case "talk":
-                //TODO: Implement talk logic
+                Room current = player.getCurrentRoom();
+                if(current.getName().equals("Old Man's Room")) {
+                    oldMan.talk();
+                } else {
+                    System.out.println("There is no one here to talk to");
+                }
                 return true;
 
             case "inventory":
@@ -292,7 +351,19 @@ public class Game {
                 return true;
 
             case "quit":
-                System.out.println("\nYou abandon your pursuit and allow desperation to overtake you.\nDeep withinthe labyrinthine caves there is no hope of escape.\nAs your mind unravels, the darkness consumes you.\nYour sister is never found.\nGame over.");  //me
+                if(player.getCurrentRoom().getName().equals("Final Cutscene")) {
+                    System.out.println("The sticky black tendrils retract outside of the spotlight formed from the light filtering down through the hole.\n" +
+                                        "An unnatural stillness settles over the room as if the struggle moments earlier had never taken place\n" +
+                                        "Game Over");
+                
+                } else {
+
+                    System.out.println("\nYou abandon your pursuit and allow desperation to overtake you.\n" +
+                                        "Deep within the labyrinthine caves there is no hope of escape.\n" +
+                                        "As your mind unravels, the darkness consumes you.\n" +
+                                        "Your sister is never found.\n" +
+                                        "Game over.");  //me
+                }
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -317,7 +388,9 @@ public class Game {
             boolean hasCarving = ItemSearches.haveStoneCarving(player.getInventory(), "Stone Carving");
             //Checking the negative case first, if the boolean returns false print a message and stop movement with the "return" command
             if (!hasCarving) {
-                System.out.println("\nYou push against the rough stone comprising the wall unable to find any seams.\nYou notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\nWithout anything to place there, the wall blocks your way."); //me
+                System.out.println("\nYou push against the rough stone comprising the wall unable to find any seams.\n" +
+                                        "You notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\n" +
+                                        "Without anything to place there, the wall blocks your way."); //me
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -329,7 +402,10 @@ public class Game {
                 //Anything else is the positive case, and if barrenDoorOpen is not true it prints a message for the door opening and then sets the door's open boolean to true
             } else {
                 if (!barrenDoorOpen) {
-                    System.out.println("\nA feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\nAs you complete the placement of the carving, you hear a click from some hidden mechanism and the wall swings open.\nEthereal light fills the entryway from deeper within this hidden chamber.\nThe dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold."); //me
+                    System.out.println("\nA feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\n" +
+                                        "As you complete the placement of the carving, you hear a click from some hidden mechanism and the wall swings open.\n" +
+                                        "Ethereal light fills the entryway from deeper within this hidden chamber.\n" +
+                                        "The dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold."); //me
                     
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
@@ -341,12 +417,29 @@ public class Game {
 
         }
 
+        if(current.getName().equals("Room with a Pit") && direction.equalsIgnoreCase("down")) {
+
+            boolean haveRope = ItemSearches.haveRope(player.getInventory(), "Rope");
+            if (!haveRope) {
+                System.out.println("\nYou approach the edge of the pit and look down into the darkness.\n" +
+                                    "You would surely perish were you to fall or enter without using a rope.");
+
+                //Pause for player to read message
+                System.out.println("\n[Press Enter to Continue]");
+                new Scanner(System.in).nextLine();
+                
+                return;
+            }
+        }
+
         //if the name of the current room matches "Ritual Chamber" AND the player tries to go west
         if(current.getName().equals("Ritual Chamber") && direction.equalsIgnoreCase("west")) {
 
             boolean hasKey = ItemSearches.haveKey(player.getInventory(), "Key");
             if (!hasKey) {
-                System.out.println("\nYou approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\nUnable to react in time as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\nWithout the proper key, there is no way through this door."); //me
+                System.out.println("\nYou approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\n" +
+                                        "Unable to react in time as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\n" +
+                                        "Without the proper key, there is no way through this door."); //me
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -355,7 +448,10 @@ public class Game {
                 return;  //stops movement
             } else {
                 if (!finalDoorOpen) {
-                    System.out.println("\nWith no small amount of effort, you push the key through the surrounding barrier and into the lock.\nAs the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\nThe barrier sputters and fades away as the latch emits a satisfying click.\nYou push the door open, the darkness of the next chamber seeming to swallow all light around it."); //me
+                    System.out.println("\nWith no small amount of effort, you push the key through the surrounding barrier and into the lock.\n" +
+                                        "As the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\n" +
+                                        "The barrier sputters and fades away as the latch emits a satisfying click.\n" +
+                                        "You push the door open, the darkness of the next chamber seeming to swallow all light around it."); //me
                     finalDoorOpen = true;
 
                     //Pause for player to read message
@@ -415,10 +511,27 @@ public class Game {
 
     private void initOldMan() {
         oldMan = new Old_Man("Old Man");
-        oldMan.addDialogue("Cave", "Be wary as these caverns have existed for far longer than is apparent and house things lost to even The Builder's memory.  You are outside of his sight while here and, by extension, beyond his protection and graces.");
-        oldMan.addDialogue("Rope", "That rope was used to lower the chosen few to have audience with our lord in a time long past. *his fingers linger on one particular frayed end of the rope that is oddly stained and his face darkens*  I do not wish to speak further about this.");
-        oldMan.addDialogue("Stone Carving", "Ah, you have found our artisan's representation of our lord's beautiful and majestic countenance.  It is a shame it is but a useless lump of rock now, leaving you unable to experience the depth of his exquisite form.  It will still perform its function, however.");
-        //TODO: Add More Dialogue
+        oldMan.addDialogue("cave", "Be wary as these caverns have existed for far longer than is apparent and house things lost to even The Builder's memory.\n" +
+                                    "You are outside of his sight while here and, by extension, beyond his protection and graces.");
+
+        oldMan.addDialogue("rope", "That rope was used to lower the chosen few to have audience with our lord in a time long past.\n" +
+                                        "*his fingers linger on one particular frayed end of the rope that is oddly stained and his face darkens*\n" +
+                                        "I do not wish to speak further about this.");
+
+        oldMan.addDialogue("stone carving", "Ah, you have found our artisan's representation of our lord's beautiful and majestic countenance.\n" +
+                                            "It is a shame it is but a useless lump of rock now, leaving you unable to experience the depth of his exquisite form.\n" +
+                                            "It will still perform its function, however.");
+
+        oldMan.addDialogue("key", "Ah!  You have found the key to our master's chambers!\n" +
+                                        "Do be courteous, as our lord does so hate uninvited guests.\n" +
+                                        "Perhaps you will find him in a pleasant mood...");
+        
+        oldMan.addDialogue("ritual chamber", "Ah yes, that is the place we purified our offerings to our master and demonstrated our devotion.\n" +
+                                                    "There was a ceremony not too long ago, though time in these caves...\n" +
+                                                    "*his voice trails off as he makes faint gestures with his hands*\n" +
+                                                    "No matter, what is important to know is that it is a sacred place and is on the doorstep of our lord's chambers.");
+        
+        //TODO: Add More Dialogue?
     }
     
 }

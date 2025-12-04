@@ -2,7 +2,7 @@
 
 /*
  * Boilerplate structure generated with assistance from ChatGPT (OpenAI).
- * Adapted and completed by James McKean.
+ * Adapted and completed by .
  * All conversation content, hints, dialogue, and logic were created by me.
  */
 
@@ -52,19 +52,26 @@ public class Old_Man {
         Scanner scanner = new Scanner(System.in);
         boolean talking = true;
 
-        System.out.println(name + ": Greetings, lost one.  Why has The Builder brought you to me?");  //me
+        System.out.println("\n" + name + ": Greetings, lost one.  Why has The Builder brought you to me?");  //me
 
         while (talking) {
-            System.out.println("Enter a topic of conversation the old man may know about, or 'bye' to end the conversation: ");
+            System.out.println("\nEnter a topic of conversation the old man may know about, or 'bye' to end the conversation: ");
             String input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("bye")) {
-                System.out.println(name + ": Do not stray too deep, lost one.  There are things... *the old man shudders and his focus becomes pained and distant* ...things older than even The Builder Himself in these caverns.");  //me
+                System.out.println("\n" + name + ": Do not stray too deep, lost one.  There are things...\n" +
+                                                    "*the old man shudders and his focus becomes pained and distant*\n" +
+                                                    "...things older than even The Builder Himself in these caverns.");  //me
+
+                //Pause for player to read message
+                System.out.println("\n[Press Enter to Continue]");
+                new Scanner(System.in).nextLine();
+
                 talking = false;
             } else if (dialogueOptions.containsKey(input)) {
-                System.out.println(name + " says: " + dialogueOptions.get(input));
+                System.out.println("\nThe " + name + " says: " + dialogueOptions.get(input));
             }else {
-                System.out.println(name + " narrows his eyes and cocks his head in confusion. 'I do not understand what you mean by '" + input + "'.");  //me
+                System.out.println("\nThe " + name + " narrows his eyes and cocks his head in confusion. 'I do not understand what you mean by '" + input + "'.");  //me
             }
         }
     } 

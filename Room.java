@@ -2,7 +2,7 @@
 
 /*
  * Boilerplate structure generated with assistance from ChatGPT (OpenAI).
- * Adapted and completed by James McKean.
+ * Adapted and completed by .
  * All game content, algorithms, map layout, descriptions, and logic 
  * were created by me.
  */
@@ -12,6 +12,8 @@
 public class Room {
     private String name;
     private String description;
+    
+    private Old_Man npc;
 
     // Creates a hash map to store exit directions that are mapped to the room objects they lead to
     private java.util.HashMap<String, Room> exits = new java.util.HashMap<>();
@@ -63,6 +65,16 @@ public class Room {
     // Returns a list of all items in the room
     public java.util.List<Item> getItems() {
         return items;
+    }
+
+    //
+    public void setNPC(Old_Man npc) {
+        this.npc = npc;
+    }
+
+    //
+    public Old_Man getNPC() {
+        return npc;
     }
 
 }

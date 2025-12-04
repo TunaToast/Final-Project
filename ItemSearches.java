@@ -72,7 +72,28 @@ public class ItemSearches {
         return false;
     
     }  //End of haveKey method
+
+    //create a recursive inventory search
+    public static boolean haveRope (ArrayList<Item> inventory, String itemName, int index) {
+        //If all items checked, return false
+        if (index >= inventory.size()) {
+            return false;
+        }
+
+        //If item currently checked matches
+        if (inventory.get(index).getName().equalsIgnoreCase(itemName)) {
+            return true;
+        }
+
+        //Recursive call
+        return haveRope (inventory, itemName, index + 1);
+    }
+
+    //Convenience for easier use
+    public static boolean haveRope(ArrayList<Item> inventory, String itemName) {
+        return haveRope (inventory, itemName, 0);
+    }
+}
     
 
-}
 
