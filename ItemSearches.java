@@ -1,3 +1,11 @@
+/*
+*Name: James McKean
+*Date: 12/4/25
+*Assignment: Final Programming Project
+*CPSC-39-12705 (Fall 2025)
+*Professor Kanemoto
+*/
+
 import java.util.ArrayList;
 
 //Guidance provided by ChatGPT for algorithm structure and implementation ideas.
@@ -26,13 +34,16 @@ public class ItemSearches {
     //First, sort the inventory using bubble sort
     //Create a nested loop to compare each item in the inventory
     //Outer loop moves through each item
-    for (int i = 0; i < inventory.size() - 1; i++) {
+    boolean alreadySorted = true;
+    for (int i = 0; i < inventory.size() - 1 && alreadySorted; i++) {
+        alreadySorted = false;
         //Inner loop compares the current item with the next item
         for (int j = 0; j < inventory.size() - i - 1; j++) {
             //Retrieve item at index j and compare to item at index j+1
             //Compare item name ASCII values using compareToIgnoreCase() to avoid case affecting comparison
             //If current item name value is greater than the next and greater than 0, swap them
             if (inventory.get(j).getName().compareToIgnoreCase(inventory.get(j+1).getName()) > 0) {
+                alreadySorted = true;
                 //Create a temporary variable to hold one of the items during the swap
                 Item temp = inventory.get(j);
                 //Set item at index j to item at index j+1

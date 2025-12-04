@@ -1,4 +1,10 @@
-
+/*
+*Name: James McKean
+*Date: 12/4/25
+*Assignment: Final Programming Project
+*CPSC-39-12705 (Fall 2025)
+*Professor Kanemoto
+*/
 
 
 /* * Boilerplate structure generated with assistance from ChatGPT (OpenAI). 
