@@ -14,12 +14,13 @@
 
 //TODO: Use comments to clearly denotate what sections of code do what.
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Old_Man {
 
     private String name;
-    private java.util.HashMap<String, String> dialogueOptions = new java.util.HashMap<>();
+    private HashMap<String, String> dialogueOptions = new HashMap<>();
 
     public Old_Man(String name) {
         this.name = name;
@@ -54,8 +55,7 @@ public class Old_Man {
     *Simple conversation loop with the player
     *Expand if needed for branching dialogue
     */
-    public void talk() {
-        Scanner scanner = new Scanner(System.in);
+    public void talk(Scanner scanner) {
         boolean talking = true;
 
         System.out.println("\n" + name + ": Greetings, lost one.  Why has The Builder brought you to me?");  //me
@@ -71,7 +71,7 @@ public class Old_Man {
 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
 
                 talking = false;
             } else if (dialogueOptions.containsKey(input)) {

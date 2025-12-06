@@ -15,12 +15,13 @@
 
 //TODO: Use comments to clearly denotate what sections of code do what.
 
+import java.util.ArrayList;
 public class Player {
     
     private Room currentRoom;
 
     // Inventory using ArrayList
-    private java.util.ArrayList<Item> inventory = new java.util.ArrayList<>();
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     public Player(Room startRoom) {
         this.currentRoom = startRoom;
@@ -41,7 +42,7 @@ public class Player {
         inventory.remove(item);
     }
 
-    public java.util.ArrayList<Item> getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 

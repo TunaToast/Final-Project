@@ -13,7 +13,7 @@
 * were created by me. */
 
 
-
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -24,14 +24,15 @@ public class Game {
     private boolean finalDoorOpen = false;
     private boolean barrenDoorOpen = false;
     
+    private Scanner scanner = new Scanner(System.in);
     private Player player;
     private CommandParser parser = new CommandParser();
 
     // Stores all rooms created in the HashMap rooms indexed by their names
-    private java.util.HashMap<String, Room> rooms = new java.util.HashMap<>();
+    private HashMap<String, Room> rooms = new HashMap<>();
 
     // Stores all items created in the Hashmap items indexed by their names
-    private java.util.HashMap<String, Item> items = new java.util.HashMap<>();
+    private HashMap<String, Item> items = new HashMap<>();
 
 
     public static void main(String[] args) {
@@ -58,7 +59,7 @@ public class Game {
         System.out.println("\n[Press Enter to Start]");
         
         //Pause for input to allow reading of welcome message
-        new Scanner(System.in).nextLine();
+        scanner.nextLine();
 
 
         gameLoop();
@@ -222,7 +223,7 @@ public class Game {
     }
 
     private void gameLoop() {
-        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
         boolean running = true;
 
         while (running) {
@@ -234,7 +235,7 @@ public class Game {
             showRoomItems(room);
 
             System.out.print("> ");
-            String input = scanner.nextLine();
+            input = scanner.nextLine();
             running = handleCommand(input);
         }
         // Close the scanner to avoid resource leaks
@@ -258,7 +259,7 @@ public class Game {
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
-                    new Scanner(System.in).nextLine();
+                    scanner.nextLine();
 
                 } else {
                     move(parts[1]);
@@ -280,7 +281,7 @@ public class Game {
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
-                    new Scanner(System.in).nextLine();
+                    scanner.nextLine();
 
                     //returns true to keep gameLoop running
                     return true;
@@ -313,7 +314,7 @@ public class Game {
                         
                         //Pause for player to read message
                         System.out.println("\n[Press Enter to Continue]");
-                        new Scanner(System.in).nextLine();
+                        scanner.nextLine();
 
                         //sets itemToTake variable to the value of item
                         itemToTake = item;
@@ -328,7 +329,7 @@ public class Game {
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
-                    new Scanner(System.in).nextLine();
+                    scanner.nextLine();
                 }
                 //returns true to keep gameLoop running
                 return true;
@@ -341,7 +342,7 @@ public class Game {
             case "talk":
                 Room current = player.getCurrentRoom();
                 if(current.getName().equals("Old Man's Room")) {
-                    oldMan.talk();
+                    oldMan.talk(scanner);
                 } else {
                     System.out.println("There is no one here to talk to");
                 }
@@ -352,7 +353,7 @@ public class Game {
 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
 
                 return true;
 
@@ -373,7 +374,7 @@ public class Game {
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
                 
                 return false;
             
@@ -400,7 +401,7 @@ public class Game {
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
 
                 return;  //stops movement
               
@@ -415,7 +416,7 @@ public class Game {
                     
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
-                    new Scanner(System.in).nextLine();
+                    scanner.nextLine();
                     
                     barrenDoorOpen = true;
                 }
@@ -432,7 +433,7 @@ public class Game {
 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
                 
                 return;
             }
@@ -449,7 +450,7 @@ public class Game {
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
-                new Scanner(System.in).nextLine();
+                scanner.nextLine();
 
                 return;  //stops movement
             } else {
@@ -462,7 +463,7 @@ public class Game {
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
-                    new Scanner(System.in).nextLine();
+                    scanner.nextLine();
                 }
             }
         }
@@ -475,7 +476,7 @@ public class Game {
 
             //Pause for player to read message
             System.out.println("\n[Press Enter to Continue]");
-            new Scanner(System.in).nextLine();
+            scanner.nextLine();
 
         } else {
             player.setCurrentRoom(next);

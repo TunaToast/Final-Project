@@ -13,6 +13,10 @@
  * were created by me.
  */
 
+import java.util.List;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 //TODO: Use comments to clearly denotate what sections of code do what.
 public class Room {
@@ -22,10 +26,10 @@ public class Room {
     private Old_Man npc;
 
     // Creates a hash map to store exit directions that are mapped to the room objects they lead to
-    private java.util.HashMap<String, Room> exits = new java.util.HashMap<>();
+    private HashMap<String, Room> exits = new HashMap<>();
 
     // Items currently stored in this room are added to the ArrayList called items
-    private java.util.ArrayList<Item> items = new java.util.ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     // Constructor for the rooms creating a named room with an associated description
     public Room(String name, String description) {
@@ -44,7 +48,7 @@ public class Room {
     }
 
     // Get all available exit directions
-    public java.util.Set<String> getExitDirections() {
+    public Set<String> getExitDirections() {
         return exits.keySet();
     }
 
@@ -69,7 +73,7 @@ public class Room {
     }
 
     // Returns a list of all items in the room
-    public java.util.List<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
