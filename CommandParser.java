@@ -12,7 +12,7 @@
  *
  * Portions of this code were adapted with guidance from OpenAI's ChatGPT (Dec 2025).
  * Suggestions included improvements to parsing multi-word commands and normalizing input.
- * All modifications, integration into the game, and additional logic were implemented by .
+ * All modifications, integration into the game, and additional logic were implemented by James McKean.
  */
 
 //TODO: Use comments to clearly denotate what sections of code do what.

@@ -8,7 +8,7 @@
 
 
 /* * Boilerplate structure generated with assistance from ChatGPT (OpenAI). 
-* Adapted and completed by . 
+* Adapted and completed by James McKean. 
 * All game content, algorithms, map layout, descriptions, and logic 
 * were created by me. */
 
