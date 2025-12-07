@@ -21,8 +21,8 @@ import java.util.Scanner;
 public class Game {
 
     //these two values used to check whether doors have been opened later on
-    private boolean finalDoorOpen = false;
-    private boolean barrenDoorOpen = false;
+    private boolean finalDoorOpen = false;  //me
+    private boolean barrenDoorOpen = false;  //me
     
     private Scanner scanner = new Scanner(System.in);
     private Player player;
@@ -39,6 +39,7 @@ public class Game {
         new Game().start();
     }
 
+    //activates constructors to create world
     public void start() {
         createRooms();
         initOldMan();
@@ -46,7 +47,7 @@ public class Game {
         placeItems();
         createWorldMap();
 
-        player = new Player(rooms.get("Start"));  // Starting room
+        player = new Player(rooms.get("Start"));  // Starting room  //me
 
         //Starting message
         System.out.println("\nWelcome to Into The Deep!");  //me
@@ -58,9 +59,6 @@ public class Game {
 
         System.out.println("\n[Press Enter to Start]");
         
-        //Pause for input to allow reading of welcome message
-        scanner.nextLine();
-
 
         gameLoop();
     }
@@ -133,7 +131,8 @@ public class Game {
                                                                     "In an instant, the tentacle splits apart down its length with a sickly smack.\n" +
                                                                     "Innumerable needle like teeth shimmer in the dim light as it rears back.\n" +
                                                                     "Just before unconsciousness takes you, the tentacle engulfs your legs, latching on and dragging your helpless form into the darkness.\n" +
-                                                                    "An unearthly, unnaturally deep shriek echoes through the chamber as your vision goes dark."));
+                                                                    "An unearthly, unnaturally deep shriek echoes through the chamber as your vision goes dark.\n" +
+                                                                    "[Use Command Quit to End Game]"));  //me
         
     }
 
@@ -165,7 +164,7 @@ public class Game {
 
         Room Start = rooms.get("Start");  //me
         Room WestofStart = rooms.get("West of Start");  //me
-        Room CenterWestRoom = rooms.get("Old Man's Room");  //me
+        //Room CenterWestRoom = rooms.get("Old Man's Room");  //me (to be used if I placed the Old Man like an item)
         Room CentralRoom = rooms.get("Central Room");  //me
         Room CentralFarEastRoom = rooms.get("Central Far East Room");  //me
         Room NorthofOldMansRoom = rooms.get("North of Old Man's Room");  //me
@@ -209,7 +208,7 @@ public class Game {
         rooms.get("Center East Room").setExit("West", rooms.get("Central Room"));  //me
         rooms.get("Center East Room").setExit("South", rooms.get("East of Start"));  //me
         rooms.get("Center East Room").setExit("East", rooms.get("Central Far East Room"));  //me
-        rooms.get("Center East Room").setExit("North", rooms.get("North of Barren Room"));
+        rooms.get("Center East Room").setExit("North", rooms.get("North of Barren Room"));  //me
 
         rooms.get("Central Far East Room").setExit("West", rooms.get("Center East Room"));  //me
 
@@ -243,14 +242,18 @@ public class Game {
     }
 
     private boolean handleCommand(String input) {
+        //splits input into parts
         String[] parts = parser.parse(input);
 
+        //if nothing typed, keep game running and start over
         if (parts.length == 0) {
             return true;
         }
 
+        //designate index 0 of what is typed as the command
         String command = parts[0];
 
+        //with the command being designated the first word typed, check each case for the matching command
         switch (command) {
 
             case "go":
@@ -277,6 +280,7 @@ public class Game {
                 //Checks that the player has provided an item name target with the take command
                 //If not, prompts with a question to remind user of syntax
                 if (parts.length < 2) {
+                    //if only command typed
                     System.out.println("\nTake what?");
 
                     //Pause for player to read message
@@ -299,15 +303,15 @@ public class Game {
 
                 //i is set to 0
                 //for as long as i is less than the size of the referenced array list
-                for(int i = 0 ; i < currentRoom.getItems().size() ; i++) {
+                for(int i = 0 ; i < currentRoom.getItems().size() ; i++) {  
                     //creates Item variable item and defines it as the Items array list object at index i
-                    Item item = currentRoom.getItems().get(i);
+                    Item item = currentRoom.getItems().get(i);  
                     //if the item returned matches the value stored in the itemName variable
-                    if (item.getName().equalsIgnoreCase(itemName)) {
+                    if (item.getName().equalsIgnoreCase(itemName)) {  
                         //access the player's inventory and add the item
-                        player.getInventory().add(item);
+                        player.getInventory().add(item);  
                         //access the items currently in the room and remove the item from index i
-                        currentRoom.getItems().remove(i);
+                        currentRoom.getItems().remove(i);  
                         
                         //Message to provide feedback for action
                         System.out.println("\nYou put the " + item.getName() + " in your satchel.");
@@ -333,22 +337,29 @@ public class Game {
                 }
                 //returns true to keep gameLoop running
                 return true;
-
+            
+            //I have decided against using this
             //case "drop":
                 //TODO: Implement drop item logic
-                //I have decided against this
                 //return true;
 
             case "talk":
+                
+                //retrieve player's current position/room
                 Room current = player.getCurrentRoom();
+                //if the player is in "Old Man's Room"
                 if(current.getName().equals("Old Man's Room")) {
+                    //oldMan.talk's method is called and uses scanner input
                     oldMan.talk(scanner);
                 } else {
+                    //if player is anywhere else
                     System.out.println("There is no one here to talk to");
-                }
+                } 
                 return true;
 
             case "inventory":
+                
+                //call showInventory method
                 showInventory();
 
                 //Pause for player to read message
@@ -358,13 +369,15 @@ public class Game {
                 return true;
 
             case "quit":
+                
+                //if the player's current room is "Final Cutscene" then, when the command "quit" is used, print this message
                 if(player.getCurrentRoom().getName().equals("Final Cutscene")) {
                     System.out.println("The sticky black tendrils retract outside of the spotlight formed from the light filtering down through the hole.\n" +
-                                        "An unnatural stillness settles over the room as if the struggle moments earlier had never taken place\n" +
-                                        "Game Over");
+                                        "An unnatural stillness settles over the chamber as if the struggle moments earlier had never taken place\n" +
+                                        "Game Over");  //me
                 
                 } else {
-
+                    //Otherwise print this message
                     System.out.println("\nYou abandon your pursuit and allow desperation to overtake you.\n" +
                                         "Deep within the labyrinthine caves there is no hope of escape.\n" +
                                         "As your mind unravels, the darkness consumes you.\n" +
@@ -378,6 +391,7 @@ public class Game {
                 
                 return false;
             
+            //if command not recognized, print this
             default:
                 System.out.println("\nI am unable to decipher what you mean.");
                 return true;
@@ -389,6 +403,7 @@ public class Game {
         //Retrieves player's current room location
         Room current = player.getCurrentRoom();
         
+        //added by me
         //if the name of the current room matches "Barren Room" AND the player tries to go North (with the case ignored)
         if(current.getName().equals("Barren Room") && direction.equalsIgnoreCase("north")) {
             // The linear search method hasCarving is called and returns a boolean depending on whether "Stone Carving" is found in the player's inventory
@@ -397,7 +412,7 @@ public class Game {
             if (!hasCarving) {
                 System.out.println("\nYou push against the rough stone comprising the wall unable to find any seams.\n" +
                                         "You notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\n" +
-                                        "Without anything to place there, the wall blocks your way."); //me
+                                        "Without anything to place there, the wall blocks your way.");
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -412,7 +427,7 @@ public class Game {
                     System.out.println("\nA feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\n" +
                                         "As you complete the placement of the carving, you hear a click from some hidden mechanism and the wall swings open.\n" +
                                         "Ethereal light fills the entryway from deeper within this hidden chamber.\n" +
-                                        "The dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold."); //me
+                                        "The dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold.");
                     
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
@@ -424,9 +439,13 @@ public class Game {
 
         }
 
+        //added by me
+        //if the player is in "Room with a Pit" and tries to go down
         if(current.getName().equals("Room with a Pit") && direction.equalsIgnoreCase("down")) {
 
+            //assigns haveRope based on the haveRope search in ItemSearches.java
             boolean haveRope = ItemSearches.haveRope(player.getInventory(), "Rope");
+            //if the haveRope variable is not true, display the message
             if (!haveRope) {
                 System.out.println("\nYou approach the edge of the pit and look down into the darkness.\n" +
                                     "You would surely perish were you to fall or enter without using a rope.");
@@ -439,14 +458,17 @@ public class Game {
             }
         }
 
+        //added by me
         //if the name of the current room matches "Ritual Chamber" AND the player tries to go west
         if(current.getName().equals("Ritual Chamber") && direction.equalsIgnoreCase("west")) {
 
+            //assigns hasKey based on the hasKey search in ItemSearches.java
             boolean hasKey = ItemSearches.haveKey(player.getInventory(), "Key");
+            //if the the variable hasKey is not true, display the message
             if (!hasKey) {
                 System.out.println("\nYou approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\n" +
                                         "Unable to react in time as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\n" +
-                                        "Without the proper key, there is no way through this door."); //me
+                                        "Without the proper key, there is no way through this door.");
                 
                 //Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
@@ -454,11 +476,12 @@ public class Game {
 
                 return;  //stops movement
             } else {
+                //if finalDoorOpen is not true, display this description and set finalDoorOpen as true
                 if (!finalDoorOpen) {
                     System.out.println("\nWith no small amount of effort, you push the key through the surrounding barrier and into the lock.\n" +
                                         "As the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\n" +
                                         "The barrier sputters and fades away as the latch emits a satisfying click.\n" +
-                                        "You push the door open, the darkness of the next chamber seeming to swallow all light around it."); //me
+                                        "You push the door open, the darkness of the next chamber seeming to swallow all light around it.");
                     finalDoorOpen = true;
 
                     //Pause for player to read message
@@ -469,8 +492,10 @@ public class Game {
         }
     
 
+        //retrieves room object based on exit directions found in current room
         Room next = current.getExit(direction);
         
+        //if next has nothing assigned then there is no exit
         if (next == null) {
             System.out.println("\nThere is no exit in that direction.");
 
@@ -478,65 +503,80 @@ public class Game {
             System.out.println("\n[Press Enter to Continue]");
             scanner.nextLine();
 
-        } else {
+        } else {  //if there is something assigned, move the player to the next room based on the current room's exits
             player.setCurrentRoom(next);
         }
     
     }
 
     private void showExits(Room room) {
+        //for the room object passed in, print "Exits: "
         System.out.print("\nExits: ");
+        //for each string in the collection returned by the getExitDirections method, call it dir
         for (String dir : room.getExitDirections()) {
+            //for the dir string generated, make the first index forced to uppercase and the rest of the string to lowercase
             String cap = dir.substring(0,1).toUpperCase() + dir.substring(1).toLowerCase();
+            //print out the result
             System.out.print(cap + " ");
-        }      
+        } 
+        //moves the cursor to a new line after printing all exits returned    
         System.out.println();
     }
 
     private void showRoomItems(Room room) {
+        //if a room's getItems returns empty, then enter the if statement and simply end the method
         if (room.getItems().isEmpty()) {
             return;
         }
-
+        //otherwise, print "You see: "
         System.out.print("\nYou see: ");
+        //for every item i that is returned by the room.getItems method
         for (Item i : room.getItems()) {
+            //print the name of the item separated by a " "
             System.out.print(i.getName() + " ");
         }
+        //move the cursor to the next line after printing all items returned
         System.out.println();
     }
 
     private void showInventory() {
+        //when showInventory is called, print "Your backpack contains: "
         System.out.print("\nYour backpack contains: ");
+        //for every item i that is returned gy the player.getInventory method
         for (Item i : player.getInventory()) {
+            //print the name of the item follwed by " "
             System.out.print(i.getName() + " ");
         }
+        //place the cursor on a new line after finishing
         System.out.println();
     }
     
-    //Field for the NPC
+    //field to hold the new Old_Man object oldMan
     private Old_Man oldMan;
 
+    //method to initialize values and the HashMap for oldMan
     private void initOldMan() {
         oldMan = new Old_Man("Old Man");
+
         oldMan.addDialogue("cave", "Be wary as these caverns have existed for far longer than is apparent and house things lost to even The Builder's memory.\n" +
-                                    "You are outside of his sight while here and, by extension, beyond his protection and graces.");
+                                    "You are outside of his sight while here and, by extension, beyond his protection and graces.");  //me
 
         oldMan.addDialogue("rope", "That rope was used to lower the chosen few to have audience with our lord in a time long past.\n" +
                                         "*his fingers linger on one particular frayed end of the rope that is oddly stained and his face darkens*\n" +
-                                        "I do not wish to speak further about this.");
+                                        "I do not wish to speak further about this.");  //me
 
         oldMan.addDialogue("stone carving", "Ah, you have found our artisan's representation of our lord's beautiful and majestic countenance.\n" +
                                             "It is a shame it is but a useless lump of rock now, leaving you unable to experience the depth of his exquisite form.\n" +
-                                            "It will still perform its function, however.");
+                                            "It will still perform its function, however."); //me
 
         oldMan.addDialogue("key", "Ah!  You have found the key to our master's chambers!\n" +
                                         "Do be courteous, as our lord does so hate uninvited guests.\n" +
-                                        "Perhaps you will find him in a pleasant mood...");
+                                        "Perhaps you will find him in a pleasant mood...");  //me
         
         oldMan.addDialogue("ritual chamber", "Ah yes, that is the place we purified our offerings to our master and demonstrated our devotion.\n" +
                                                     "There was a ceremony not too long ago, though time in these caves...\n" +
                                                     "*his voice trails off as he makes faint gestures with his hands*\n" +
-                                                    "No matter, what is important to know is that it is a sacred place and is on the doorstep of our lord's chambers.");
+                                                    "No matter, what is important to know is that it is a sacred place and is on the doorstep of our lord's chambers.");  //me
         
         //TODO: Add More Dialogue?
     }

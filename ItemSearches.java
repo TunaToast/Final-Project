@@ -8,7 +8,7 @@
 
 import java.util.ArrayList;
 
-//Guidance provided by ChatGPT for algorithm structure and implementation ideas.
+//ChatGPT assisted only with syntax/structural guidance — algorithm logic and implementation written by me.
 
 public class ItemSearches {
    
@@ -91,19 +91,23 @@ public class ItemSearches {
             return false;
         }
 
-        //If item currently checked matches
+        //If item currently checked matches, return true
         if (inventory.get(index).getName().equalsIgnoreCase(itemName)) {
             return true;
         }
 
-        //Recursive call
+        //Recursive call for three field haveRope to increase the index
         return haveRope (inventory, itemName, index + 1);
-    }
+    
+    }  //end of three field haveRope method
 
-    //Convenience for easier use
+    //creates a haveRope method with two fields instead of three
     public static boolean haveRope(ArrayList<Item> inventory, String itemName) {
+        //allows for the use of the two fields by assigning the index as zero
         return haveRope (inventory, itemName, 0);
-    }
+    
+    }  //end of two field haveRope method
+
 }
     
 
