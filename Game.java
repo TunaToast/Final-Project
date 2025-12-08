@@ -11,6 +11,7 @@
 * Adapted and completed by James McKean. 
 * All game content, algorithms, map layout, descriptions, and logic 
 * were created by me. */
+//Game.java
 
 
 import java.util.HashMap;
@@ -132,7 +133,7 @@ public class Game {
                                                                     "Innumerable needle like teeth shimmer in the dim light as it rears back.\n" +
                                                                     "Just before unconsciousness takes you, the tentacle engulfs your legs, latching on and dragging your helpless form into the darkness.\n" +
                                                                     "An unearthly, unnaturally deep shriek echoes through the chamber as your vision goes dark.\n" +
-                                                                    "[Use Command Quit to End Game]"));  //me
+                                                                    "[Type 'Quit' to End Game]"));  //me
         
     }
 

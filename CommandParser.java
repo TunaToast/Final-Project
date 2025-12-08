@@ -14,6 +14,8 @@
  * Suggestions included improvements to parsing multi-word commands and normalizing input.
  * All modifications, integration into the game, and additional logic were implemented by James McKean.
  */
+//CommandParser
+
 
 //TODO: Use comments to clearly denotate what sections of code do what.
 public class CommandParser {

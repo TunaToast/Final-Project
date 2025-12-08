@@ -14,6 +14,7 @@
  */
 
 //TODO: Use comments to clearly denotate what sections of code do what.
+//Player.java
 
 import java.util.ArrayList;
 public class Player {

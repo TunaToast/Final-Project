@@ -6,6 +6,8 @@
 *Professor Kanemoto
 */
 
+//ItemSearches.java
+
 import java.util.ArrayList;
 
 //ChatGPT assisted only with syntax/structural guidance — algorithm logic and implementation written by me.
