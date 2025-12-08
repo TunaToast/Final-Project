@@ -11,14 +11,13 @@
 * Adapted and completed by James McKean. 
 * All game content, algorithms, map layout, descriptions, and logic 
 * were created by me. */
-//Game.java
 
+//Game.java
 
 import java.util.HashMap;
 import java.util.Scanner;
 
 
-//TODO: Use comments to clearly denotate what sections of code do what.
 public class Game {
 
     //these two values used to check whether doors have been opened later on
@@ -65,7 +64,7 @@ public class Game {
     }
 
     private void createRooms() {
-        //TODO: Create room objects here
+        //Create room objects here
         // Example:
         // rooms.put("Damp Cave", new Room("Damp Cave", "A dark, damp cave with dripping water."));
         // " + " operator concatenates the strings, joining one after the other until the final statement with the semicolon ends the block
@@ -138,7 +137,7 @@ public class Game {
     }
 
     private void createItems() {
-        //TODO: Implement items here
+        // Implement items here
         // Example:
         // items.put("Rope", new Item("Rope", "A sturdy rope, useful for climbing."));
 
@@ -151,7 +150,7 @@ public class Game {
     }
 
     private void placeItems() {
-        //TODO: Implement item placement logic
+        // Implement item placement logic
         // Place items in rooms as needed
         // Example:
         //  reference a room from the rooms HashMap
@@ -184,9 +183,9 @@ public class Game {
     }
 
     private void createWorldMap() {
-        //TODO: Implement world map creation logic
-        //Define room connections here
-        //Example:
+        // Implement world map creation logic
+        // Define room connections here
+        // Example:
         // rooms.get("Damp Cave").setExit("north", rooms.get("Dark Tunnel"));
 
         rooms.get("Start").setExit("East", rooms.get("East of Start"));  //me
@@ -243,18 +242,18 @@ public class Game {
     }
 
     private boolean handleCommand(String input) {
-        //splits input into parts
+        // splits input into parts
         String[] parts = parser.parse(input);
 
-        //if nothing typed, keep game running and start over
+        // if nothing typed, keep game running and start over
         if (parts.length == 0) {
             return true;
         }
 
-        //designate index 0 of what is typed as the command
+        // designate index 0 of what is typed as the command
         String command = parts[0];
 
-        //with the command being designated the first word typed, check each case for the matching command
+        // with the command being designated the first word typed, check each case for the matching command
         switch (command) {
 
             case "go":
@@ -271,15 +270,15 @@ public class Game {
                 return true;
             
             case "look":
-                //Refresh description
+                // Refresh description
                 System.out.println(player.getCurrentRoom().getDescription());
                 return true;
 
             case "take":
-                //TODO: Implement take item logic
+                // Implement take item logic
 
-                //Checks that the player has provided an item name target with the take command
-                //If not, prompts with a question to remind user of syntax
+                // Checks that the player has provided an item name target with the take command
+                // If not, prompts with a question to remind user of syntax
                 if (parts.length < 2) {
                     //if only command typed
                     System.out.println("\nTake what?");
@@ -291,23 +290,23 @@ public class Game {
                     //returns true to keep gameLoop running
                     return true;
                 }
-                //Stores the part of the command at index 1 into the string variable itemName
-                //itemName then has any white space trimmed off for accurate comparison later
+                // Stores the part of the command at index 1 into the string variable itemName
+                // itemName then has any white space trimmed off for accurate comparison later
                 String itemName = parts[1];
                 itemName = itemName.trim();
                 
-                //fetches the players current room position and stores it in the room variable currentRoom
+                // fetches the players current room position and stores it in the room variable currentRoom
                 Room currentRoom = player.getCurrentRoom();
 
-                //sets itemToTake to null
+                // sets itemToTake to null
                 Item itemToTake = null;
 
-                //i is set to 0
-                //for as long as i is less than the size of the referenced array list
+                // i is set to 0
+                // for as long as i is less than the size of the referenced array list
                 for(int i = 0 ; i < currentRoom.getItems().size() ; i++) {  
-                    //creates Item variable item and defines it as the Items array list object at index i
+                    // creates Item variable item and defines it as the Items array list object at index i
                     Item item = currentRoom.getItems().get(i);  
-                    //if the item returned matches the value stored in the itemName variable
+                    // if the item returned matches the value stored in the itemName variable
                     if (item.getName().equalsIgnoreCase(itemName)) {  
                         //access the player's inventory and add the item
                         player.getInventory().add(item);  
@@ -327,7 +326,7 @@ public class Game {
                         break;
                     }
                 }
-                //if the array list is iterated through completely without itemToTake being assigned other than null
+                // if the array list is iterated through completely without itemToTake being assigned other than null
                 if(itemToTake == null) {
                     //feedback to indicate item is not available to take
                     System.out.println("\nThe item [" + itemName + "] is not here");
@@ -336,34 +335,34 @@ public class Game {
                     System.out.println("\n[Press Enter to Continue]");
                     scanner.nextLine();
                 }
-                //returns true to keep gameLoop running
+                // returns true to keep gameLoop running
                 return true;
             
-            //I have decided against using this
-            //case "drop":
-                //TODO: Implement drop item logic
+            // I have decided against using this
+            // case "drop":
+                //Implement drop item logic
                 //return true;
 
             case "talk":
                 
-                //retrieve player's current position/room
+                // retrieve player's current position/room
                 Room current = player.getCurrentRoom();
-                //if the player is in "Old Man's Room"
+                // if the player is in "Old Man's Room"
                 if(current.getName().equals("Old Man's Room")) {
                     //oldMan.talk's method is called and uses scanner input
                     oldMan.talk(scanner);
                 } else {
-                    //if player is anywhere else
+                    // if player is anywhere else
                     System.out.println("There is no one here to talk to");
                 } 
                 return true;
 
             case "inventory":
                 
-                //call showInventory method
+                // call showInventory method
                 showInventory();
 
-                //Pause for player to read message
+                // Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
                 scanner.nextLine();
 
@@ -371,14 +370,14 @@ public class Game {
 
             case "quit":
                 
-                //if the player's current room is "Final Cutscene" then, when the command "quit" is used, print this message
+                // if the player's current room is "Final Cutscene" then, when the command "quit" is used, print this message
                 if(player.getCurrentRoom().getName().equals("Final Cutscene")) {
                     System.out.println("The sticky black tendrils retract outside of the spotlight formed from the light filtering down through the hole.\n" +
                                         "An unnatural stillness settles over the chamber as if the struggle moments earlier had never taken place\n" +
                                         "Game Over");  //me
                 
                 } else {
-                    //Otherwise print this message
+                    // Otherwise print this message
                     System.out.println("\nYou abandon your pursuit and allow desperation to overtake you.\n" +
                                         "Deep within the labyrinthine caves there is no hope of escape.\n" +
                                         "As your mind unravels, the darkness consumes you.\n" +
@@ -386,13 +385,13 @@ public class Game {
                                         "Game over.");  //me
                 }
                 
-                //Pause for player to read message
+                // Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
                 scanner.nextLine();
                 
                 return false;
             
-            //if command not recognized, print this
+            // if command not recognized, print this
             default:
                 System.out.println("\nI am unable to decipher what you mean.");
                 return true;
@@ -401,28 +400,28 @@ public class Game {
 
     private void move(String direction) {
         
-        //Retrieves player's current room location
+        // Retrieves player's current room location
         Room current = player.getCurrentRoom();
         
-        //added by me
-        //if the name of the current room matches "Barren Room" AND the player tries to go North (with the case ignored)
+        // added by me
+        // if the name of the current room matches "Barren Room" AND the player tries to go North (with the case ignored)
         if(current.getName().equals("Barren Room") && direction.equalsIgnoreCase("north")) {
             // The linear search method hasCarving is called and returns a boolean depending on whether "Stone Carving" is found in the player's inventory
             boolean hasCarving = ItemSearches.haveStoneCarving(player.getInventory(), "Stone Carving");
-            //Checking the negative case first, if the boolean returns false print a message and stop movement with the "return" command
+            // Checking the negative case first, if the boolean returns false print a message and stop movement with the "return" command
             if (!hasCarving) {
                 System.out.println("\nYou push against the rough stone comprising the wall unable to find any seams.\n" +
                                         "You notice an indentation with an alien silhouette carved into the rock off to one side, as if something needs to be inserted.\n" +
                                         "Without anything to place there, the wall blocks your way.");
                 
-                //Pause for player to read message
+                // Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
                 scanner.nextLine();
 
                 return;  //stops movement
               
               
-                //Anything else is the positive case, and if barrenDoorOpen is not true it prints a message for the door opening and then sets the door's open boolean to true
+                // Anything else is the positive case, and if barrenDoorOpen is not true it prints a message for the door opening and then sets the door's open boolean to true
             } else {
                 if (!barrenDoorOpen) {
                     System.out.println("\nA feeling of dread washes over you, causing you to momentarily hesitate from placing the carving in the cutout.\n" +
@@ -430,7 +429,7 @@ public class Game {
                                         "Ethereal light fills the entryway from deeper within this hidden chamber.\n" +
                                         "The dread felt moments ago drains and is replaced by acute curiosity as you cross the threshold.");
                     
-                    //Pause for player to read message
+                    // Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
                     scanner.nextLine();
                     
@@ -440,18 +439,18 @@ public class Game {
 
         }
 
-        //added by me
-        //if the player is in "Room with a Pit" and tries to go down
+        // added by me
+        // if the player is in "Room with a Pit" and tries to go down
         if(current.getName().equals("Room with a Pit") && direction.equalsIgnoreCase("down")) {
 
-            //assigns haveRope based on the haveRope search in ItemSearches.java
+            // assigns haveRope based on the haveRope search in ItemSearches.java
             boolean haveRope = ItemSearches.haveRope(player.getInventory(), "Rope");
-            //if the haveRope variable is not true, display the message
+            // if the haveRope variable is not true, display the message
             if (!haveRope) {
                 System.out.println("\nYou approach the edge of the pit and look down into the darkness.\n" +
                                     "You would surely perish were you to fall or enter without using a rope.");
 
-                //Pause for player to read message
+                // Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
                 scanner.nextLine();
                 
@@ -459,25 +458,25 @@ public class Game {
             }
         }
 
-        //added by me
-        //if the name of the current room matches "Ritual Chamber" AND the player tries to go west
+        // added by me
+        // if the name of the current room matches "Ritual Chamber" AND the player tries to go west
         if(current.getName().equals("Ritual Chamber") && direction.equalsIgnoreCase("west")) {
 
-            //assigns hasKey based on the hasKey search in ItemSearches.java
+            // assigns hasKey based on the hasKey search in ItemSearches.java
             boolean hasKey = ItemSearches.haveKey(player.getInventory(), "Key");
-            //if the the variable hasKey is not true, display the message
+            // if the the variable hasKey is not true, display the message
             if (!hasKey) {
                 System.out.println("\nYou approach the door and, as you try the handle, a shimmering barrier of energy springs to life.\n" +
                                         "Unable to react in time as your hand contacts the barrier, a sharp pain shoots up your arm followed by a pins and needles as your arm temporarily goes numb.\n" +
                                         "Without the proper key, there is no way through this door.");
                 
-                //Pause for player to read message
+                // Pause for player to read message
                 System.out.println("\n[Press Enter to Continue]");
                 scanner.nextLine();
 
                 return;  //stops movement
             } else {
-                //if finalDoorOpen is not true, display this description and set finalDoorOpen as true
+                // if finalDoorOpen is not true, display this description and set finalDoorOpen as true
                 if (!finalDoorOpen) {
                     System.out.println("\nWith no small amount of effort, you push the key through the surrounding barrier and into the lock.\n" +
                                         "As the lock actuates, the runes and patterns flash a bright green from top to bottom before fading away, smoke rising from where the etchings on the key once were.\n" +
@@ -485,7 +484,7 @@ public class Game {
                                         "You push the door open, the darkness of the next chamber seeming to swallow all light around it.");
                     finalDoorOpen = true;
 
-                    //Pause for player to read message
+                    // Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
                     scanner.nextLine();
                 }
@@ -493,69 +492,71 @@ public class Game {
         }
     
 
-        //retrieves room object based on exit directions found in current room
+        // retrieves room object based on exit directions found in current room
         Room next = current.getExit(direction);
         
-        //if next has nothing assigned then there is no exit
+        // if next has nothing assigned then there is no exit
         if (next == null) {
             System.out.println("\nThere is no exit in that direction.");
 
-            //Pause for player to read message
+            // Pause for player to read message
             System.out.println("\n[Press Enter to Continue]");
             scanner.nextLine();
 
-        } else {  //if there is something assigned, move the player to the next room based on the current room's exits
+          // if there is something assigned
+          // move the player to the next room based on the current room's exits
+        } else {
             player.setCurrentRoom(next);
         }
     
     }
 
     private void showExits(Room room) {
-        //for the room object passed in, print "Exits: "
+        // for the room object passed in, print "Exits: "
         System.out.print("\nExits: ");
-        //for each string in the collection returned by the getExitDirections method, call it dir
+        // for each string in the collection returned by the getExitDirections method, call it dir
         for (String dir : room.getExitDirections()) {
-            //for the dir string generated, make the first index forced to uppercase and the rest of the string to lowercase
+            // for the dir string generated, make the first index forced to uppercase and the rest of the string to lowercase
             String cap = dir.substring(0,1).toUpperCase() + dir.substring(1).toLowerCase();
-            //print out the result
+            // print out the result
             System.out.print(cap + " ");
         } 
-        //moves the cursor to a new line after printing all exits returned    
+        // moves the cursor to a new line after printing all exits returned    
         System.out.println();
     }
 
     private void showRoomItems(Room room) {
-        //if a room's getItems returns empty, then enter the if statement and simply end the method
+        // if a room's getItems returns empty, then enter the if statement and simply end the method
         if (room.getItems().isEmpty()) {
             return;
         }
-        //otherwise, print "You see: "
+        // otherwise, print "You see: "
         System.out.print("\nYou see: ");
-        //for every item i that is returned by the room.getItems method
+        // for every item i that is returned by the room.getItems method
         for (Item i : room.getItems()) {
-            //print the name of the item separated by a " "
+            // print the name of the item separated by a " "
             System.out.print(i.getName() + " ");
         }
-        //move the cursor to the next line after printing all items returned
+        // move the cursor to the next line after printing all items returned
         System.out.println();
     }
 
     private void showInventory() {
-        //when showInventory is called, print "Your backpack contains: "
+        // when showInventory is called, print "Your backpack contains: "
         System.out.print("\nYour backpack contains: ");
-        //for every item i that is returned gy the player.getInventory method
+        // for every item i that is returned gy the player.getInventory method
         for (Item i : player.getInventory()) {
-            //print the name of the item follwed by " "
+            // print the name of the item follwed by " "
             System.out.print(i.getName() + " ");
         }
-        //place the cursor on a new line after finishing
+        // place the cursor on a new line after finishing
         System.out.println();
     }
     
-    //field to hold the new Old_Man object oldMan
+    // field to hold the new Old_Man object oldMan
     private Old_Man oldMan;
 
-    //method to initialize values and the HashMap for oldMan
+    // method to initialize values and the HashMap for oldMan
     private void initOldMan() {
         oldMan = new Old_Man("Old Man");
 
@@ -579,7 +580,7 @@ public class Game {
                                                     "*his voice trails off as he makes faint gestures with his hands*\n" +
                                                     "No matter, what is important to know is that it is a sacred place and is on the doorstep of our lord's chambers.");  //me
         
-        //TODO: Add More Dialogue?
+        // Add More Dialogue?
     }
     
 }

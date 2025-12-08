@@ -12,15 +12,14 @@
  * All game content, algorithms, map layout, descriptions, and logic 
  * were created by me.
  */
-//Room.java
 
+//Room.java
 
 import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-//TODO: Use comments to clearly denotate what sections of code do what.
 public class Room {
     private String name;
     private String description;

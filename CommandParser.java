@@ -14,10 +14,9 @@
  * Suggestions included improvements to parsing multi-word commands and normalizing input.
  * All modifications, integration into the game, and additional logic were implemented by James McKean.
  */
+
 //CommandParser
 
-
-//TODO: Use comments to clearly denotate what sections of code do what.
 public class CommandParser {
 
     //splits commands entered by the player into a command and optional modifiers that are put into the "remainder" variable and normalizing into lowercase
@@ -37,7 +36,7 @@ public class CommandParser {
             return new String[0];
         }
 
-        //split into 2 parts only
+        //split into 2 parts at most, using whitespace as the split point
         String[] parts = input.split("\\s+", 2);
         //commands are parts[0]
         //normalize commands into lower case
@@ -51,7 +50,7 @@ public class CommandParser {
         }
         // the remainder string variable is instantiated
         //remainder is assigned as parts[1] trimmed for whitespace and forced to lowercase
-        // .replaceAll("\\s+", " "); replaces any amount of consecutive whitespaces with a space (" ")
+        // .replaceAll("\\s+", " "); replaces any amount of consecutive whitespaces with a space (" "), normalizing the string
         String remainder = parts[1].trim().toLowerCase().replaceAll("\\s+"," ");
         //Creates a new String array containing the command (parts[0]) in index 0 and the remainder variable value in index 1
         return new String[] { parts[0], remainder };

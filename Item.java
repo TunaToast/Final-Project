@@ -13,11 +13,7 @@
  * were created by me.
  */
 
-
-
-// TODO: Use comments to clearly denotate what sections of code do what.
 //Item.java
-
 
 public class Item {
 

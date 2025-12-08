@@ -12,7 +12,6 @@
  * All conversation content, hints, dialogue, and logic were created by me.
  */
 
-//TODO: Use comments to clearly denotate what sections of code do what.
 //Old_Man.java
 
 import java.util.HashMap;
