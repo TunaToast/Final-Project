@@ -78,12 +78,12 @@ public class Room {
         return items;
     }
 
-    //
+    // create a method to set the room's npcs
     public void setNPC(Old_Man npc) {
         this.npc = npc;
     }
 
-    //
+    // create a method to return the room's NPC
     public Old_Man getNPC() {
         return npc;
     }

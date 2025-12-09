@@ -47,6 +47,7 @@ public class Game {
         placeItems();
         createWorldMap();
 
+        // Creates a player instance and places it in the room with the specified key
         player = new Player(rooms.get("Start"));  // Starting room  //me
 
         //Starting message
@@ -59,7 +60,7 @@ public class Game {
 
         System.out.println("\n[Press Enter to Start]");
         
-
+        // Start the gameplay loop and begin accepting player input
         gameLoop();
     }
 
@@ -222,19 +223,28 @@ public class Game {
     }
 
     private void gameLoop() {
+        // Reads a line from Scanner into input
         String input = scanner.nextLine();
+        // Set the boolean for whether the game is active
         boolean running = true;
 
+        // While the boolean running remains true
         while (running) {
+            // The room object is set to what is returned by player.getCurrentRoom()
             Room room = player.getCurrentRoom();
+            // Print these two statements (Room header and description)
             System.out.println("\n== " + room.getName() + " ==");
             System.out.println(room.getDescription());
 
+            // Calls showExits on the room object
             showExits(room);
+            // Calls showRoomItems on the room object
             showRoomItems(room);
 
             System.out.print("> ");
+            // Sets input to the player's input
             input = scanner.nextLine();
+            // running is set to the returned value from the handleCommand input
             running = handleCommand(input);
         }
         // Close the scanner to avoid resource leaks
@@ -256,29 +266,39 @@ public class Game {
         // with the command being designated the first word typed, check each case for the matching command
         switch (command) {
 
+            // When the "go" command is entered
             case "go":
+                // If there are less than 2 parts to the command returned by the parser
                 if (parts.length < 2) {
+
+                    // Print this out
                     System.out.println("\nGo where?");
 
                     //Pause for player to read message
                     System.out.println("\n[Press Enter to Continue]");
                     scanner.nextLine();
-
+                  // Otherwise go in the indicated direction if valid
                 } else {
                     move(parts[1]);
                 }
+                // Keep gameLoop running by returning true
                 return true;
             
             case "look":
-                // Refresh description
+                // Reprint the current room's description
                 System.out.println(player.getCurrentRoom().getDescription());
+
+                //Pause for player to read message
+                    System.out.println("\n[Press Enter to Continue]");
+                    scanner.nextLine();
+
                 return true;
 
             case "take":
                 // Implement take item logic
 
                 // Checks that the player has provided an item name target with the take command
-                // If not, prompts with a question to remind user of syntax
+                // If not, prompts with a question
                 if (parts.length < 2) {
                     //if only command typed
                     System.out.println("\nTake what?");

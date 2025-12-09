@@ -28,10 +28,12 @@ public class Item {
         this.description = description;
     }
 
+    // method to return the item name
     public String getName() {
         return name;
     }
-
+    
+    // method to retrieve the item description
     public String getDescription() {
         return description;
     }

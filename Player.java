@@ -13,8 +13,6 @@
  * were created by me.
  */
 
-//TODO: Use comments to clearly denotate what sections of code do what.
-
 //Player.java
 
 import java.util.ArrayList;
@@ -22,28 +20,35 @@ public class Player {
     
     private Room currentRoom;
 
-    // Inventory using ArrayList
+    // Create an ArrayList named inventory to keep track of items added or removed
     private ArrayList<Item> inventory = new ArrayList<>();
 
+    // creates a method to the player in the designated starting room
     public Player(Room startRoom) {
         this.currentRoom = startRoom;
     }
 
-    
+    // Method to retrieve the current room
     public Room getCurrentRoom() {
         return currentRoom;
     }
+   
+    // method to set the room the player is in
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
 
+    // method to add items into inventory
     public void addItem(Item item) {
         inventory.add(item);
     }
+
+    // method to remove an item from inventory
     public void removeItem(Item item) {
         inventory.remove(item);
     }
 
+    // a method to return the modifiable inventory ArrayList
     public ArrayList<Item> getInventory() {
         return inventory;
     }
